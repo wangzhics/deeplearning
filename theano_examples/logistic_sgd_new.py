@@ -90,6 +90,8 @@ class SoftMax:
         valid_set_x, valid_set_y = shared_dataset(valid_set)
         # stop when
         best_valid_error_rate = 1
+        best_w = self.w.get_value(borrow=True)
+        best_b = self.b.get_value(borrow=True)
         running = True
         # early stop
         not_improve = 0
@@ -99,11 +101,15 @@ class SoftMax:
             valid_error_rate = self._validate(valid_set_x, valid_set_y)
             if valid_error_rate < best_valid_error_rate:
                 best_valid_error_rate = valid_error_rate
+                best_w = self.w.get_value(borrow=True)
+                best_b = self.b.get_value(borrow=True)
                 not_improve = 0
             else:
                 not_improve += 1
             if not_improve > 5:
                 running = False
+                self.w.set_value(best_w, borrow=True)
+                self.b.set_value(best_b, borrow=True)
             # debug info
             # print("train step %d , valid_error_rate %f%%" %(i, valid_error_rate * 100))
             # i += 1
