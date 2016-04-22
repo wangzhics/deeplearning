@@ -372,8 +372,9 @@ def sgd_optimization_mnist(learning_rate=0.13, n_epochs=1000,
                     #improve patience if loss improvement is good enough
                     if this_validation_loss < best_validation_loss *  \
                        improvement_threshold:
+                        # print(patience, "", iter * patience_increase)
                         patience = max(patience, iter * patience_increase)
-                        print("improvement_threshold %d" % patience)
+
 
                     best_validation_loss = this_validation_loss
                     # test it on the test set

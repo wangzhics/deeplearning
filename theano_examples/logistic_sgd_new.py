@@ -38,7 +38,7 @@ class SoftMax:
         # error
         error = T.mean(T.neq(y_pred, y))
         # constant value
-        self.learning_rate = 0.13
+        self.learning_rate = 0.15
         self.batch_size = 600
         # grad
         g_w = T.grad(cost=cost, wrt=self.w)
@@ -81,30 +81,42 @@ class SoftMax:
             validation_losses.append(self.validate_model(x_batch, y_batch))
         return numpy.mean(validation_losses)
 
-    def train(self, train_set, valid_set, test_set):
+    def test(self, test_set):
+        test_set_x, test_set_y = shared_dataset(test_set)
+        return self._validate(test_set_x, test_set_y)
+
+    def train(self, train_set, valid_set):
         train_set_x, train_set_y = shared_dataset(train_set)
         valid_set_x, valid_set_y = shared_dataset(valid_set)
-        test_set_x, test_set_y = shared_dataset(test_set)
         # stop when
         best_valid_error_rate = 1
         running = True
-        i = 1
+        # early stop
+        not_improve = 0
+        i = 0
         while running:
             self._train_sgd(train_set_x, train_set_y)
             valid_error_rate = self._validate(valid_set_x, valid_set_y)
-            test_error_rate = self._validate(test_set_x, test_set_y)
-            print("%d training, valid error rate is: %f%%, test error rate is: %f%%" % (i, valid_error_rate * 100, test_error_rate * 100))
-            i += 1
             if valid_error_rate < best_valid_error_rate:
                 best_valid_error_rate = valid_error_rate
+                not_improve = 0
             else:
-                #running = False
-                pass
+                not_improve += 1
+            if not_improve > 5:
+                running = False
+            # debug info
+            # print("train step %d , valid_error_rate %f%%" %(i, valid_error_rate * 100))
+            # i += 1
 
 
-soft_max = SoftMax(28*28, 10)
-# Load the dataset
-with gzip.open('../mnist.pkl.gz', 'rb') as f:
-    train_set, valid_set, test_set = pickle.load(f, encoding='latin1')
-    soft_max.train(train_set, valid_set, test_set)
+if __name__ == '__main__':
+    soft_max = SoftMax(28*28, 10)
+    # Load the dataset
+    with gzip.open('../mnist.pkl.gz', 'rb') as f:
+        train_set, valid_set, test_set = pickle.load(f, encoding='latin1')
+        # train
+        soft_max.train(train_set, valid_set)
+        # test
+        test_error_rate = soft_max.test(test_set)
+        print("final test error rate %f" % (test_error_rate * 100))
 
