@@ -1,2 +1,1 @@
-import theano.tensor as T
-x = T.matrix("x")
+print( 100.4 // 2)
