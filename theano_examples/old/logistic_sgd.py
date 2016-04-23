@@ -81,7 +81,6 @@ class SoftMax:
             validation_losses.append(self.validate_model(x_batch, y_batch))
         return numpy.mean(validation_losses)
 
-
     def test(self, test_set):
         test_set_x, test_set_y = shared_dataset(test_set)
         return self._validate(test_set_x, test_set_y)
