@@ -1,8 +1,7 @@
 import numpy
 import theano
 import theano.tensor as T
-import pickle
-import gzip
+from theano_examples.data import load_data
 
 
 def shared_dataset(data_xy, borrow=True):
@@ -81,6 +80,7 @@ class SoftMax:
             validation_losses.append(self.validate_model(x_batch, y_batch))
         return numpy.mean(validation_losses)
 
+
     def test(self, test_set):
         test_set_x, test_set_y = shared_dataset(test_set)
         return self._validate(test_set_x, test_set_y)
@@ -118,11 +118,10 @@ class SoftMax:
 if __name__ == '__main__':
     soft_max = SoftMax(28*28, 10)
     # Load the dataset
-    with gzip.open('../mnist.pkl.gz', 'rb') as f:
-        train_set, valid_set, test_set = pickle.load(f, encoding='latin1')
-        # train
-        soft_max.train(train_set, valid_set)
-        # test
-        test_error_rate = soft_max.test(test_set)
-        print("final test error rate %f" % (test_error_rate * 100))
+    train_set, valid_set, test_set = load_data()
+    # train
+    soft_max.train(train_set, valid_set)
+    # test
+    test_error_rate = soft_max.test(test_set)
+    print("final test error rate %f" % (test_error_rate * 100))
 
