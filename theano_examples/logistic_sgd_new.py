@@ -90,8 +90,8 @@ class SoftMax:
         valid_set_x, valid_set_y = shared_dataset(valid_set)
         # stop when
         best_valid_error_rate = 1
-        best_w = self.w.get_value(borrow=True)
-        best_b = self.b.get_value(borrow=True)
+        best_w = self.w.get_value(borrow=False)
+        best_b = self.b.get_value(borrow=False)
         running = True
         # early stop
         not_improve = 0
@@ -101,8 +101,8 @@ class SoftMax:
             valid_error_rate = self._validate(valid_set_x, valid_set_y)
             if valid_error_rate < best_valid_error_rate:
                 best_valid_error_rate = valid_error_rate
-                best_w = self.w.get_value(borrow=True)
-                best_b = self.b.get_value(borrow=True)
+                best_w = self.w.get_value(borrow=False)
+                best_b = self.b.get_value(borrow=False)
                 not_improve = 0
             else:
                 not_improve += 1
