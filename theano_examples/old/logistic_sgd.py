@@ -1,7 +1,8 @@
 import numpy
 import theano
 import theano.tensor as T
-from theano_examples.data import load_data
+
+from theano_examples.old.data import load_data
 
 
 def shared_dataset(data_xy, borrow=True):
@@ -111,8 +112,8 @@ class SoftMax:
                 self.w.set_value(best_w, borrow=True)
                 self.b.set_value(best_b, borrow=True)
             # debug info
-            # print("train step %d , valid_error_rate %f%%" %(i, valid_error_rate * 100))
-            # i += 1
+            print("train step %d , valid_error_rate %f%%" %(i, valid_error_rate * 100))
+            i += 1
 
 
 if __name__ == '__main__':
