@@ -4,23 +4,24 @@ import theano.tensor as T
 
 
 class SoftMax:
-    def __init__(self, n_input, n_output):
+    def __init__(self, x, y, n_x, n_y):
         # initialize with 0 the weights as a matrix of shape (n_in, n_out)
         self.w = theano.shared(
-            value=numpy.zeros((n_input, n_output), dtype=theano.config.floatX),
+            value=numpy.zeros((n_x, n_y), dtype=theano.config.floatX),
             name='w',
             borrow=True
         )
         # initialize the biases b as a vector of n_out 0s
         self.b = theano.shared(
-            value=numpy.zeros((n_output,), dtype=theano.config.floatX),
+            value=numpy.zeros((n_y,), dtype=theano.config.floatX),
             name='b',
             borrow=True
         )
-        # input and output
-        self.x = T.matrix('x')
-        self.y = T.ivector('y')
-        # hyperplane
+        self.params = [self.w, self.b]
+        # save x, y
+        self.x = x
+        self.y = y
+        # calculate
         p_y_given_x = T.nnet.softmax(T.dot(self.x, self.w) + self.b)
         # probability is maximal
         y_pred = T.argmax(p_y_given_x, axis=1)
@@ -31,8 +32,8 @@ class SoftMax:
 
 
 class HiddenLayer:
-    def __init__(self, n_input, n_output, activation=T.tanh):
-        weight_max = numpy.sqrt(6. / (n_input + n_output))
+    def __init__(self, x, y, n_x, n_y, activation=T.tanh):
+        weight_max = numpy.sqrt(6. / (n_x + n_y))
         if activation == theano.tensor.nnet.sigmoid:
             weight_max *= 4
         rng = numpy.random.RandomState(1234)
@@ -42,12 +43,17 @@ class HiddenLayer:
             borrow=True
         )
         self.b = theano.shared(
-            value= numpy.zeros((n_output,)),
+            value= numpy.zeros((n_y,), dtype=theano.config.floatX),
             name='b',
             borrow=True
         )
-        self.p_y_given_x = T.dot(input, self.w) + self.b
+        self.params = [self.w, self.b]
+        # save x, y
+        self.x = x
+        self.y = y
+        # calculate
+        self.y_given_x = T.dot(self.x, self.w) + self.b
         if activation is not None:
-            self.p_y_given_x = activation(self.p_y_given_x)
+            self.y_given_x = activation(self.y_given_x)
 
 
