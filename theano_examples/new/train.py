@@ -18,13 +18,13 @@ def load_data():
             return shared_dataset(train_set), shared_dataset(valid_set), shared_dataset(test_set)
 
 
-def sgd_train(train_set, valid_set, train_model, valid_model, finish_once, batch_size=600):
+def sgd_train(train_set, valid_set, train_model, valid_model, finish_once, default_batch_size=600):
     train_set_x, train_set_y = train_set
     valid_set_x, valid_set_y = valid_set
     train_set_size = train_set_x.get_value(borrow=True).shape[0]
     valid_set_size = valid_set_x.get_value(borrow=True).shape[0]
-    train_set_batch = train_set_size // batch_size
-    valid_set_batch = valid_set_size // batch_size
+    train_set_batch = train_set_size // default_batch_size
+    valid_set_batch = valid_set_size // default_batch_size
     # sgd train
     running = True
     best_valid_error_rate = 1.0
