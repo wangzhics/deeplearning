@@ -30,9 +30,11 @@ def sgd_train(train_set, valid_set, train_model, valid_model, finish_once, defau
     best_valid_error_rate = 1.0
     # early stop
     not_improve = 0
-    i = 0
+    i = 1
     while running:
+        print("begin to train %d " % i)
         _train_one(train_model, train_set_batch)
+        print("train %d finish" % i)
         valid_error_rate = _valid_error(valid_model, valid_set_batch)
         if valid_error_rate < best_valid_error_rate:
             best_valid_error_rate = valid_error_rate

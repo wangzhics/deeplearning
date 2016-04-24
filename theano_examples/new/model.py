@@ -38,7 +38,7 @@ class HiddenLayer:
             weight_max *= 4
         rng = numpy.random.RandomState(1234)
         self.w = theano.shared(
-            value=rng.uniform(low=-weight_max, high=weight_max, size=(n_input, n_output)),
+            value=rng.uniform(low=-weight_max, high=weight_max, size=(n_x, n_y)),
             name='w',
             borrow=True
         )
