@@ -274,7 +274,7 @@ def test_cnn(dataset='../mnist.pkl.gz',learning_rate = 0.01, n_epochs = 1000, ba
 
                     # test it on the test set
                     test_losses = [test_model(i) for i
-                                   in range(n_test_batches)]
+                                   in range(int(n_test_batches))]
                     test_score = numpy.mean(test_losses)
 
                     print(('     epoch %i, minibatch %i/%i, test error of '
