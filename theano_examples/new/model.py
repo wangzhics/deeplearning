@@ -64,7 +64,7 @@ class LeNetConvPoolLayer:
         构造一个卷积池化层，包含一个卷积层和一个池化层
         :param input: 输入的图像
         :param input_shape: 输入的图像形状：(batch_size, image_channel, image_weight, image_height)
-        :param filter_shape: 过滤器的形状：(filter_count, image_channel, filter_weight, filter_height)
+        :param filter_shape: 过滤器的形状：(filter_count, filter_channel, filter_weight, filter_height)
         :param pool_shape: 池化器的形状
         :return:
         """
@@ -86,6 +86,8 @@ class LeNetConvPoolLayer:
             borrow=True
         )
         self.b = theano.shared(numpy.zeros((filter_shape[0],), dtype=theano.config.floatX), borrow=True)
+        self.params = [self.w, self.b]
+        # calculate the output
         self.conv_out = conv2d(
             input=self.input,
             filters=self.w,
