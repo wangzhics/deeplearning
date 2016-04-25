@@ -15,9 +15,10 @@ if __name__ == '__main__':
     batch_size = 20
     x = T.matrix('x')
     y = T.ivector('y')
+    rng = numpy.random.RandomState(1234)
     # hidden layer
     hidden_layer_node = 500
-    hidden_layer = HiddenLayer(x, 0, 28*28, hidden_layer_node)
+    hidden_layer = HiddenLayer(rng, x, 0, 28*28, hidden_layer_node)
     # softmax as logistic regress
     soft_max = SoftMax(hidden_layer.y_given_x, y, hidden_layer_node, hidden_layer_node)
     # cost
