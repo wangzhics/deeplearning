@@ -1,3 +1,4 @@
+import time
 import pickle
 import gzip
 import numpy
@@ -32,7 +33,8 @@ def sgd_train(train_set, valid_set, train_model, valid_model, finish_once, defau
     not_improve = 0
     i = 1
     while running:
-        print("begin to train %d " % i)
+        print("train %d: " % i)
+        start = time.clock()
         _train_one(train_model, train_set_batch)
         print("train %d finish" % i)
         valid_error_rate = _valid_error(valid_model, valid_set_batch)
@@ -46,7 +48,8 @@ def sgd_train(train_set, valid_set, train_model, valid_model, finish_once, defau
         if not_improve > 5:
             running = False
         # debug info
-        print("train step %d , valid_error_rate %f%%" % (i, valid_error_rate*100))
+        end = time.clock()
+        print("valid_error_rate %f%%, spend %f s" % (valid_error_rate*100, end-start))
         i += 1
 
 

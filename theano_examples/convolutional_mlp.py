@@ -4,7 +4,7 @@ import os
 import sys
 import timeit
 import numpy
-
+import time
 import theano
 import theano.tensor as T
 #from theano.tensor.signal.conv import conv2d
@@ -112,7 +112,7 @@ def test_cnn(dataset='../mnist.pkl.gz',learning_rate = 0.01, n_epochs = 1000, ba
     ######################
     print('... building the model')
     rng = numpy.random.RandomState(23455)
-    nkerns= [1, 1]
+    nkerns= [2, 4]
 
 
     # Reshape matrix of rasterized images of shape (batch_size, 28 * 28)
@@ -235,6 +235,7 @@ def test_cnn(dataset='../mnist.pkl.gz',learning_rate = 0.01, n_epochs = 1000, ba
 
     while (epoch < n_epochs) and (not done_looping):
         epoch = epoch + 1
+        start = time.clock()
         for minibatch_index in range(int(n_train_batches)):
 
             minibatch_avg_cost = train_model(minibatch_index)
@@ -256,6 +257,8 @@ def test_cnn(dataset='../mnist.pkl.gz',learning_rate = 0.01, n_epochs = 1000, ba
                         this_validation_loss * 100.
                     )
                 )
+                end = time.clock()
+                print("epoch %d spend: %f s" % (epoch, end - start))
 
                 # if we got the best validation score until now
                 if this_validation_loss < best_validation_loss:

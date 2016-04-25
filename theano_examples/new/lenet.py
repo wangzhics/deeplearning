@@ -27,7 +27,7 @@ if __name__ == '__main__':
     layer2_filter_shape = (layer2_filter_count, layer1_filter_count, 5, 5)
     layer2 = LeNetConvPoolLayer(rng, layer1.output, layer2_input_shape, layer2_filter_shape)
     # hidden layer: (20, 4, 4, 4) -> 20 * (4 * 4 * 4)
-    hidden_layer_node = 50
+    hidden_layer_node = 500
     hidden_layer_input = layer2.output.flatten(2)
     hidden_layer = HiddenLayer(rng, hidden_layer_input, 0, 4*4*4, hidden_layer_node)
     # softmax as logistic regress

@@ -27,13 +27,10 @@ __docformat__ = 'restructedtext en'
 import os
 import sys
 import timeit
-
+import time
 import numpy
-
 import theano
 import theano.tensor as T
-
-
 from theano_examples.logistic_sgd import LogisticRegression, load_data
 
 
@@ -349,6 +346,7 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
     while (epoch < n_epochs) and (not done_looping):
         epoch = epoch + 1
+        start = time.clock()
         for minibatch_index in range(n_train_batches):
 
             minibatch_avg_cost = train_model(minibatch_index)
@@ -371,6 +369,8 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                     )
                 )
 
+                end = time.clock()
+                print("epoch %d spend: %f s" % (epoch, end - start))
                 # if we got the best validation score until now
                 if this_validation_loss < best_validation_loss:
                     #improve patience if loss improvement is good enough
