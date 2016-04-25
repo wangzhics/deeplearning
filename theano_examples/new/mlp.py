@@ -20,7 +20,7 @@ if __name__ == '__main__':
     hidden_layer_node = 500
     hidden_layer = HiddenLayer(rng, x, 0, 28*28, hidden_layer_node)
     # softmax as logistic regress
-    soft_max = SoftMax(hidden_layer.y_given_x, y, hidden_layer_node, hidden_layer_node)
+    soft_max = SoftMax(hidden_layer.y_given_x, y, hidden_layer_node, 10)
     # cost
     l2_lamda = 0.0001
     l2 = (hidden_layer.w ** 2).sum() + (soft_max.w ** 2).sum()
