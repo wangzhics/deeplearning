@@ -3,8 +3,6 @@ import theano.tensor as T
 import numpy
 import time
 
-import os
-
 vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
 iters = 1000
 
