@@ -1,0 +1,71 @@
+E:\Anaconda3\envs\python34\python.exe E:/ML/deeplearning/theano_examples/SdA.py
+Using gpu device 0: GeForce GT 750M (CNMeM is disabled, cuDNN not available)
+... loading data
+... building the model
+... getting the pretraining functions
+... pre-training the model
+Pre-training layer 0, epoch 0, cost 71.648659
+Pre-training layer 0, epoch 1, cost 63.687859
+Pre-training layer 0, epoch 2, cost 62.291779
+Pre-training layer 0, epoch 3, cost 61.579906
+Pre-training layer 0, epoch 4, cost 61.153759
+Pre-training layer 0, epoch 5, cost 60.873814
+Pre-training layer 0, epoch 6, cost 60.607761
+Pre-training layer 0, epoch 7, cost 60.413357
+Pre-training layer 0, epoch 8, cost 60.205639
+Pre-training layer 0, epoch 9, cost 60.040764
+Pre-training layer 0, epoch 10, cost 59.906528
+Pre-training layer 0, epoch 11, cost 59.726501
+Pre-training layer 0, epoch 12, cost 59.564461
+Pre-training layer 0, epoch 13, cost 59.473030
+Pre-training layer 0, epoch 14, cost 59.331242
+Pre-training layer 1, epoch 0, cost 482.216003
+Pre-training layer 1, epoch 1, cost 464.952728
+Pre-training layer 1, epoch 2, cost 461.491547
+Pre-training layer 1, epoch 3, cost 459.551514
+Pre-training layer 1, epoch 4, cost 458.166626
+Pre-training layer 1, epoch 5, cost 457.030914
+Pre-training layer 1, epoch 6, cost 456.074951
+Pre-training layer 1, epoch 7, cost 455.253967
+Pre-training layer 1, epoch 8, cost 454.496826
+Pre-training layer 1, epoch 9, cost 453.839996
+Pre-training layer 1, epoch 10, cost 453.259491
+Pre-training layer 1, epoch 11, cost 452.728088
+Pre-training layer 1, epoch 12, cost 452.250153
+Pre-training layer 1, epoch 13, cost 451.862030
+Pre-training layer 1, epoch 14, cost 451.500214
+Pre-training layer 2, epoch 0, cost 196.515259
+Pre-training layer 2, epoch 1, cost 183.888702
+Pre-training layer 2, epoch 2, cost 181.732178
+Pre-training layer 2, epoch 3, cost 180.530746
+Pre-training layer 2, epoch 4, cost 179.690613
+Pre-training layer 2, epoch 5, cost 179.109543
+Pre-training layer 2, epoch 6, cost 178.581177
+Pre-training layer 2, epoch 7, cost 178.146057
+Pre-training layer 2, epoch 8, cost 177.777054
+Pre-training layer 2, epoch 9, cost 177.480637
+Pre-training layer 2, epoch 10, cost 177.199387
+Pre-training layer 2, epoch 11, cost 176.951218
+Pre-training layer 2, epoch 12, cost 176.725998
+Pre-training layer 2, epoch 13, cost 176.494202
+Pre-training layer 2, epoch 14, cost 176.348206
+The pretraining code for file SdA.py ran for 138.48m
+... getting the finetuning functions
+... finetunning the model
+epoch 1, minibatch 50000/50000, validation error 4.220000 %
+     epoch 1, minibatch 50000/50000, test error of best model 4.860000 %
+epoch 2, minibatch 50000/50000, validation error 2.960000 %
+     epoch 2, minibatch 50000/50000, test error of best model 3.060000 %
+epoch 3, minibatch 50000/50000, validation error 3.070000 %
+epoch 4, minibatch 50000/50000, validation error 2.710000 %
+     epoch 4, minibatch 50000/50000, test error of best model 2.700000 %
+epoch 5, minibatch 50000/50000, validation error 2.040000 %
+     epoch 5, minibatch 50000/50000, test error of best model 2.110000 %
+epoch 6, minibatch 50000/50000, validation error 2.270000 %
+epoch 7, minibatch 50000/50000, validation error 2.740000 %
+epoch 8, minibatch 50000/50000, validation error 1.930000 %
+     epoch 8, minibatch 50000/50000, test error of best model 1.850000 %
+epoch 9, minibatch 50000/50000, validation error 2.100000 %
+epoch 10, minibatch 50000/50000, validation error 1.830000 %
+     epoch 10, minibatch 50000/50000, test error of best model 1.740000 %
+epoch 11, minibatch 50000/50000, validation error 1.880000 %
